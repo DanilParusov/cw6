@@ -1,0 +1,69 @@
+    <div class="sidebar d-flex flex-column align-items-start justify-content-between">
+        <a href="/" class="d-flex align-items-center mb-3 text-white text-decoration-none">
+            <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+            <span class="fs-4">Меню</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="/" class="nav-link active" aria-current="page">
+                    <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                    Главная
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'mailsender:all_customers' %}" class="nav-link text-white">
+                    <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                    Клиенты
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'mailsender:all_emailing' %}" class="nav-link text-white">
+                    <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                    Рассылки
+                </a>
+            </li>
+             <li>
+                <a href="{% url 'mailsender:all_email_templates' %}" class="nav-link text-white">
+                    <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                    Шаблоны
+                </a>
+            </li>
+            <li>
+                <a href="/blog" class="nav-link text-white">
+                    <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                    Блог
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="
+                {% if user.avatar %}
+                    {{ user.avatar.url }}
+                    {% else %}
+
+                    {% endif %}
+                         " alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>
+                    {% if user.is_authenticated %}
+                    {{ user.first_name }}
+                    {% else %}
+                    Пользователь
+                    {% endif %}
+
+                </strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                {% if user.is_authenticated %}
+                <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:profile' %}">Редактировать профиль</a></li>
+                {% else %}
+                <li><a class="dropdown-item" href="{% url 'users:login' %}">Войти</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:register' %}">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>

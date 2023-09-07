@@ -1,0 +1,48 @@
+{% extends 'sender/base.html' %}
+
+  {% block content %}
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="">Главная страница</h1>
+
+    </div>
+
+
+    <div class="container">
+    <h3 class="text-center">Статистика текущих почтовых рассылок</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Кол-во подписчиков</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="text-center">{{ customers.count }}</h1>
+                    <a href="{% url 'mailsender:all_customers' %}"><button type="button" class="btn btn-outline-dark">Просмотр</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Кол-во рассылок</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="text-center">{{ settings.count }}</h1>
+                    <a href="{% url 'mailsender:all_emailing' %}"><button type="button" class="btn btn-outline-dark">Просмотр</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Активные рассылки</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="text-center">{{ act_settings.count}}</h1>
+                    <a href="{% url 'mailsender:all_emailing' %}"><button type="button" class="btn btn-outline-dark">Просмотр</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  {% endblock %}
